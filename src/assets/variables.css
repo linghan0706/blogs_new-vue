@@ -1,0 +1,81 @@
+/* 颜色变量 */
+:root {
+  /* 主色调 */
+  --primary-color: #4361ee;
+  --primary-light: #eef2ff;
+  --primary-dark: #3a56d4;
+  
+  /* 中性色 */
+  --bg-color: #f5f7fa;
+  --card-bg: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #8a94a6;
+  --text-light: #c0c6d4;
+  --border-color: #e6e8eb;
+  
+  /* 功能色 */
+  --success: #34c759;
+  --warning: #ff9500;
+  --error: #ff3b30;
+  --info: #5ac8fa;
+  
+  /* 阴影 */
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
+  
+  /* 尺寸变量 */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  
+  /* 字体大小 */
+  --font-xs: 12px;
+  --font-sm: 14px;
+  --font-md: 16px;
+  --font-lg: 18px;
+  --font-xl: 24px;
+  
+  /* 圆角 */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  
+  /* 过渡 */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* 布局 */
+  --sidebar-width: 80px;
+  --header-height: 70px;
+  --content-padding: 30px;
+}
+
+/* 暗色主题变量 - 为未来做准备 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-light: #6c6c6c;
+    --border-color: #2c2c2c;
+  }
+}
+
+/* 响应式变量 */
+@media (max-width: 992px) {
+  :root {
+    --content-padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --sidebar-width: 60px;
+    --content-padding: 15px;
+  }
+}
