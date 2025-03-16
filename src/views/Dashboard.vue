@@ -57,24 +57,26 @@ import TaskList from '../components/dashboard/TaskList.vue'
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
-  padding: var(--space-md);
+  padding: clamp(var(--space-sm), 3vw, var(--space-md));
   background-color: var(--bg-color);
   border-radius: var(--radius-lg);
 }
 
 .dashboard-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-xl);
-  padding: var(--space-md);
+  gap: clamp(var(--space-sm), 2vw, var(--space-md));
+  margin-bottom: clamp(var(--space-lg), 4vw, var(--space-xl));
+  padding: clamp(var(--space-sm), 3vw, var(--space-md));
   background-color: var(--card-bg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
 }
 
 .dashboard-title {
-  font-size: var(--font-xl);
+  font-size: clamp(var(--font-lg), 4vw, var(--font-xl));
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
@@ -82,12 +84,13 @@ import TaskList from '../components/dashboard/TaskList.vue'
 
 .schedules-header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-md);
+  gap: clamp(var(--space-xs), 2vw, var(--space-md));
 }
 
 .schedules-title {
-  font-size: var(--font-lg);
+  font-size: clamp(var(--font-md), 3vw, var(--font-lg));
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
@@ -96,8 +99,9 @@ import TaskList from '../components/dashboard/TaskList.vue'
 .view-details-btn {
   color: var(--primary-color);
   text-decoration: none;
-  font-size: var(--font-sm);
+  font-size: clamp(var(--font-xs), 2vw, var(--font-sm));
   transition: color var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .view-details-btn:hover {
@@ -108,15 +112,43 @@ import TaskList from '../components/dashboard/TaskList.vue'
 .dashboard-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: var(--space-lg);
+  gap: clamp(var(--space-md), 3vw, var(--space-lg));
 }
 
 /* 项目卡片样式 */
 .project-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-lg);
-  margin-bottom: var(--space-xl);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(var(--space-md), 3vw, var(--space-lg));
+  margin-bottom: clamp(var(--space-lg), 4vw, var(--space-xl));
+}
+
+@media (max-width: 992px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .schedules-header {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .dashboard-content {
+    padding-left: calc(var(--space-md) + 60px);
+  }
+}
+
+@media (max-width: 480px) {
+  .project-cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 .project-card {

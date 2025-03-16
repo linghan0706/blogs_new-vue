@@ -102,95 +102,127 @@ const toolCategories = ref([
 
 <style scoped>
 .tools-container {
-  padding: 20px;
+  padding: clamp(15px, 3vw, 20px);
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .tools-title {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: clamp(20px, 5vw, 40px);
   color: #2c3e50;
+  font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
 .tools-grid {
   display: grid;
-  gap: 40px;
+  gap: clamp(20px, 4vw, 40px);
 }
 
 .category-title {
-  margin-bottom: 20px;
+  margin-bottom: clamp(15px, 3vw, 20px);
   color: #2c3e50;
-  font-size: 1.5em;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
 }
 
 .tools-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: clamp(15px, 3vw, 20px);
 }
 
 .tool-card {
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: clamp(15px, 3vw, 20px);
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s, box-shadow 0.2s;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.tool-card:hover {
+.tool-card:hover, .tool-card:active {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .tool-icon {
-  width: 50px;
-  height: 50px;
+  width: clamp(40px, 8vw, 50px);
+  height: clamp(40px, 8vw, 50px);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 15px;
+  margin-right: clamp(10px, 2vw, 15px);
   flex-shrink: 0;
 }
 
 .tool-icon span {
   color: white;
-  font-size: 1.5em;
+  font-size: clamp(1.2em, 2.5vw, 1.5em);
   font-weight: bold;
 }
 
 .tool-info {
   flex-grow: 1;
+  min-width: 0;
 }
 
 .tool-name {
   margin: 0 0 5px;
-  font-size: 1.1em;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
   color: #2c3e50;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tool-desc {
   margin: 0;
-  font-size: 0.9em;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
   color: #666;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
   .tools-container {
     padding: 15px;
+    padding-left: calc(var(--sidebar-width) + 80px);
+  }
+
+  .tools-grid {
+    gap: 20px;
   }
 
   .tools-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tools-container {
+    padding: 50px;
+  }
+
+  .tools-grid {
+    gap: 20px;
   }
 
   .tool-card {
-    padding: 15px;
+    padding: 12px;
+  }
+
+  .tool-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
   }
 }
 </style>

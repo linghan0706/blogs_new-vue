@@ -85,13 +85,49 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--space-lg) 0;
+  padding: clamp(var(--space-md), 3vw, var(--space-lg)) 0;
   background-color: var(--card-bg);
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-normal);
   position: relative;
   z-index: 100;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: clamp(60px, 15vw, var(--sidebar-width));
+  }
+
+  .logo-icon {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  }
+
+  :deep(.ant-menu-item) {
+    padding: clamp(8px, 2vw, 12px) !important;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+  }
+
+  .user-profile {
+    padding: clamp(8px, 2vw, 12px);
+  }
+
+  :deep(.ant-avatar) {
+    width: clamp(32px, 8vw, 40px) !important;
+    height: clamp(32px, 8vw, 40px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 50px;
+  }
+
+  :deep(.ant-menu-item) {
+    padding: 6px !important;
+    min-height: 40px;
+  }
 }
 
 .logo {

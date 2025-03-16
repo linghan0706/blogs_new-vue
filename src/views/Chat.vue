@@ -98,6 +98,7 @@ const scrollToBottom = () => {
 @media screen and (max-width: 768px) {
   .chat-container {
     padding: 10px;
+    padding-left: calc(var(--space-md) + 60px);
   }
 }
 
