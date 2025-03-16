@@ -41,8 +41,8 @@ const inputMessage = ref('')
 const messageList = ref(null)
 const isLoading = ref(false)
 const options = ref({
-  botAvatarImg: 'https://th.bing.com/th/id/OIP.Jt2Tm0SO9yukZS409L-4HwHaHa?rs=1&pid=ImgDetMain',
-  userAvatarImg: 'https://th.bing.com/th/id/OIP.QCSl2q8gy1VcXOZ9feaP6gHaEo?w=309&h=193&c=7&r=0&o=5&dpr=1.3&pid=1.7',
+  botAvatarImg: './src/assets/avatar/bot.jpg',
+  userAvatarImg: './src/assets/avatar/user.jpg',
   inputPlaceholder: '请输入消息...'
 })
 
