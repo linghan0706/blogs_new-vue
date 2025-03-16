@@ -95,10 +95,18 @@ const scrollToBottom = () => {
   padding: 20px;
 }
 
+@media screen and (max-width: 768px) {
+  .chat-container {
+    padding: 10px;
+  }
+}
+
 .chat-card {
   height: 100%;
   display: flex;
   flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .chat-header {
@@ -110,23 +118,35 @@ const scrollToBottom = () => {
 }
 
 .chat-title {
-  font-size: 16px;
+  font-size: clamp(16px, 2vw, 20px);
   font-weight: 500;
 }
 
 .chat-messages {
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  padding: clamp(10px, 3vw, 20px);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(10px, 2vw, 20px);
 }
 
 .message {
   display: flex;
   gap: 15px;
-  max-width: 80%;
+  max-width: min(80%, 600px);
+}
+
+@media screen and (max-width: 480px) {
+  .message {
+    max-width: 90%;
+    gap: 8px;
+  }
+
+  :deep(.el-avatar) {
+    width: 36px !important;
+    height: 36px !important;
+  }
 }
 
 .message-sent {
@@ -136,8 +156,9 @@ const scrollToBottom = () => {
 
 .message-content {
   background: var(--el-color-primary-light-9);
-  padding: 10px 15px;
+  padding: clamp(8px, 2vw, 15px);
   border-radius: 10px;
+  word-break: break-word;
 }
 
 .message-sent .message-content {
@@ -146,7 +167,13 @@ const scrollToBottom = () => {
 }
 
 .chat-input {
-  padding: 20px;
+  padding: clamp(10px, 3vw, 20px);
   border-top: 1px solid #eee;
+}
+
+@media screen and (max-width: 480px) {
+  :deep(.el-input-group__append) {
+    padding: 0 10px;
+  }
 }
 </style>

@@ -10,6 +10,14 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, 'src')
     }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://chatapi-self-two.vercel.app',
+        changeOrigin: true,
+        rewrite: (path) => path
+      }
+    }
   }
-},
-)
+})

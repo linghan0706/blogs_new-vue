@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 配置axios实例
 const instance = axios.create({
-  baseURL: 'https://chatapi-self-two.vercel.app/',
+  baseURL: '/api',
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json'
