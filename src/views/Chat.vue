@@ -10,6 +10,7 @@
           <el-avatar :size="48" :src="message.agent === 'user' ? options.userAvatarImg : options.botAvatarImg" />
           <div class="message-content">
             <p>{{ message.text }}</p>
+            <span class="message-time">{{ new Date().toLocaleTimeString() }}</span>
           </div>
         </div>
       </div>
@@ -93,6 +94,7 @@ const scrollToBottom = () => {
 .chat-container {
   height: 100%;
   padding: 20px;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
 }
 
 @media screen and (max-width: 768px) {
@@ -108,28 +110,37 @@ const scrollToBottom = () => {
   flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
 }
 
 .chat-header {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+  padding: 15px;
+  border-bottom: 2px solid #e3f2fd;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+  background: white;
+  border-radius: 24px 24px 0 0;
 }
 
 .chat-title {
-  font-size: clamp(16px, 2vw, 20px);
-  font-weight: 500;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 600;
+  background: linear-gradient(45deg, #2196f3, #64b5f6);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .chat-messages {
   flex: 1;
   overflow-y: auto;
-  padding: clamp(10px, 3vw, 20px);
+  padding: clamp(15px, 3vw, 25px);
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 2vw, 20px);
+  gap: clamp(15px, 2vw, 25px);
 }
 
 .message {
@@ -141,13 +152,23 @@ const scrollToBottom = () => {
 @media screen and (max-width: 480px) {
   .message {
     max-width: 90%;
-    gap: 8px;
+    gap: 10px;
   }
 
   :deep(.el-avatar) {
-    width: 36px !important;
-    height: 36px !important;
+    width: 40px !important;
+    height: 40px !important;
+    border: 3px solid #fce4ec !important;
   }
+}
+
+:deep(.el-avatar) {
+  border: 4px solid #e3f2fd;
+  transition: transform 0.3s ease;
+}
+
+:deep(.el-avatar):hover {
+  transform: scale(1.1);
 }
 
 .message-sent {
@@ -156,25 +177,96 @@ const scrollToBottom = () => {
 }
 
 .message-content {
-  background: var(--el-color-primary-light-9);
-  padding: clamp(8px, 2vw, 15px);
-  border-radius: 10px;
+  background: #e3f2fd;
+  padding: clamp(12px, 2.5vw, 20px);
+  border-radius: 24px;
   word-break: break-word;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.message-content p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.message-time {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 8px;
+  display: block;
 }
 
 .message-sent .message-content {
-  background: var(--el-color-primary);
+  background: linear-gradient(135deg, #2196f3, #64b5f6);
   color: white;
+  border-top-right-radius: 8px;
+}
+
+.message-received .message-content {
+  border-top-left-radius: 8px;
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+}
+
+.message-sent .message-time {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.message {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: message-fade-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes message-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .chat-input {
-  padding: clamp(10px, 3vw, 20px);
-  border-top: 1px solid #eee;
+  padding: clamp(15px, 3vw, 25px);
+  border-top: 2px solid #fce4ec;
+  background: white;
+  border-radius: 0 0 24px 24px;
+}
+
+:deep(.el-input__wrapper) {
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+:deep(.el-input__inner) {
+  height: 45px;
+  font-size: 16px;
+}
+
+:deep(.el-input-group__append) {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: linear-gradient(135deg, #2196f3, #64b5f6);
+  border: none;
+  padding: 0 20px;
+}
+
+:deep(.el-button) {
+  border: none;
+  background: transparent;
+  color: white;
+}
+
+:deep(.el-button:hover) {
+  background: transparent;
+  transform: scale(1.1);
 }
 
 @media screen and (max-width: 480px) {
   :deep(.el-input-group__append) {
-    padding: 0 10px;
+    padding: 0 15px;
   }
 }
 </style>
