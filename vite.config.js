@@ -6,8 +6,10 @@ import { resolve } from 'path'
 export default defineConfig({
   plugins: [vue()],
   resolve: {
+    extensions: ['.js', '.vue', '.json', '.css'],
     alias: {
       '@': resolve(__dirname, 'src')
     }
   }
-})
+},
+)

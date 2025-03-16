@@ -4,7 +4,9 @@
     <div class="main-content">
       <Header class="header" />
       <div class="content-container">
-        <slot></slot>
+        <RouterTransition>
+          <slot></slot>
+        </RouterTransition>
       </div>
     </div>
   </div>
@@ -13,6 +15,7 @@
 <script setup>
 import SideBar from './SideBar.vue'
 import Header from './Header.vue'
+import RouterTransition from './RouterTransition.vue'
 </script>
 
 <style scoped>
@@ -20,6 +23,8 @@ import Header from './Header.vue'
   display: flex;
   min-height: 100vh;
   background-color: var(--bg-color);
+  position: relative;
+  overflow-x: hidden;
 }
 
 .sidebar {
@@ -39,6 +44,8 @@ import Header from './Header.vue'
   flex-direction: column;
   min-height: 100vh;
   transition: margin-left var(--transition-normal);
+  width: calc(100% - var(--sidebar-width));
+  padding: 12px;
 }
 
 .header {
@@ -46,31 +53,51 @@ import Header from './Header.vue'
   top: 0;
   z-index: 5;
   width: 100%;
+  backdrop-filter: blur(8px);
+  background-color: rgba(var(--bg-color-rgb), 0.85);
+  margin-bottom: 12px;
 }
 
 .content-container {
   flex: 1;
-  padding: var(--content-padding);
+  padding: 16px;
   background-color: var(--bg-color);
   overflow-x: hidden;
   transition: padding var(--transition-normal), background-color var(--transition-normal);
+  border-radius: 8px;
 }
 
 /* 媒体查询 - 平板设备 */
 @media (max-width: 992px) {
+  .main-content {
+    padding: 8px;
+  }
+  
   .content-container {
-    padding: var(--content-padding);
+    padding: 12px;
   }
 }
 
 /* 媒体查询 - 移动设备 */
 @media (max-width: 768px) {
   .main-content {
-    margin-left: var(--sidebar-width);
+    padding: 6px;
+    margin-left: 0;
+    width: 100%;
   }
   
   .content-container {
-    padding: var(--content-padding);
+    padding: 8px;
   }
 }
+  
+  .app-layout.sidebar-open .sidebar {
+    transform: translateX(0);
+  }
+  
+  .app-layout.sidebar-open .main-content {
+    transform: translateX(var(--sidebar-width));
+  }
+
+
 </style>

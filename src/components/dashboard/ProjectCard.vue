@@ -54,81 +54,88 @@ const iconClass = computed(() => {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 20px;
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
   box-sizing: border-box;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .card-shadow {
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s;
+  box-shadow: var(--shadow-sm);
 }
 
 .card-shadow:hover {
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
 }
 
 .project-icon {
-  margin-bottom: 20px;
+  margin-bottom: var(--space-lg);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .avatar {
-  width: 39px;
-  height: 39px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform var(--transition-fast);
+}
+
+.avatar:hover {
+  transform: scale(1.1);
 }
 
 .bg-orange {
-  background-color: #ffe8d9;
-  color: #ff7d00;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
 }
 
 .bg-blue {
-  background-color: #e0ecff;
-  color: #4361ee;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
 }
 
 .bg-cyan {
-  background-color: #d9f2ff;
-  color: #0ca5e9;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
 }
 
 .project-title {
-  font-size: 18px;
+  font-size: var(--font-lg);
   font-weight: 600;
-  color: #1a1d1f;
-  margin: 0 0 8px;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-sm);
   line-height: 1.4;
 }
 
 .project-count {
-  font-size: 14px;
-  color: #6f767e;
-  margin: 0 0 20px;
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-lg);
   line-height: 1.4;
 }
 
 .view-all-btn {
-  padding: 8px 20px;
+  padding: var(--space-sm) var(--space-lg);
   border: none;
-  background-color: #f5f5f5;
-  color: #1a1d1f;
-  border-radius: 8px;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  font-size: 14px;
+  font-size: var(--font-sm);
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
 }
 
 .view-all-btn:hover {
-  background-color: #e8e8e8;
-  transform: translateY(-1px);
+  background-color: var(--primary-color);
+  color: var(--card-bg);
+  transform: translateY(-2px);
 }
 </style>

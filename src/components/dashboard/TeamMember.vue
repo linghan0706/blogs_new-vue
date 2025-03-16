@@ -41,9 +41,7 @@ import { ref } from 'vue'
 // 设计成员信息
 const members = ref([
   { name: 'lin07 ', roleKey: 'Web开发' },
-  // { name: '', roleKey: 'teamMember.roles.developer' },
-  // { name: '', roleKey: 'teamMember.roles.animator' },
-  // { name: 'Kathryn Murphy', roleKey: 'teamMember.roles.uxResearcher' },
+
 ])
 </script>
 

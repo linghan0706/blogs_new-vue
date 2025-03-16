@@ -13,20 +13,20 @@
         <div class="project-cards">
           <ProjectCard 
             type="ui-design" 
-            title="UI Design" 
-            :count="5" 
+            title="UI " 
+            :count="0" 
           />
           
           <ProjectCard 
             type="illustration" 
-            title="Illustration" 
-            :count="1" 
+            title="Codeitem" 
+            :count="0" 
           />
           
           <ProjectCard 
             type="development" 
             title="Development" 
-            :count="3" 
+            :count="0" 
           />
         </div>
         
@@ -55,52 +55,68 @@ import TaskList from '../components/dashboard/TaskList.vue'
 /* 仪表盘内容样式 */
 .dashboard-content {
   width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: var(--space-md);
+  background-color: var(--bg-color);
+  border-radius: var(--radius-lg);
 }
 
 .dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: var(--space-xl);
+  padding: var(--space-md);
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
 }
 
 .dashboard-title {
-  font-size: 24px;
+  font-size: var(--font-xl);
   font-weight: 600;
-  color: #1a1d1f;
+  color: var(--text-primary);
+  margin: 0;
 }
 
 .schedules-header {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: var(--space-md);
 }
 
 .schedules-title {
-  font-size: 20px;
+  font-size: var(--font-lg);
   font-weight: 600;
-  color: #1a1d1f;
+  color: var(--text-primary);
+  margin: 0;
 }
 
 .view-details-btn {
-  color: #4361ee;
+  color: var(--primary-color);
   text-decoration: none;
-  font-size: 14px;
+  font-size: var(--font-sm);
+  transition: color var(--transition-fast);
+}
+
+.view-details-btn:hover {
+  color: var(--primary-dark);
 }
 
 /* 仪表盘布局 */
 .dashboard-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-lg);
 }
 
 /* 项目卡片样式 */
 .project-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
 }
 
 .project-card {

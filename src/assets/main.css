@@ -5,6 +5,9 @@
   margin-left: -10px;
   margin-top: -10px;
 }
+.el-menu-item .el-menu-tooltip__trigger{
+  left: -11px;
+}
 /* 全局样式 */
 * {
   margin: 0;

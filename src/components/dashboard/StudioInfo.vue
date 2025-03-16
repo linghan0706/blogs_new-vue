@@ -26,9 +26,9 @@
 import { ref } from 'vue'
 
 const stats = ref([
-  { value: '23', labelKey: 'studioInfo.clients' },
-  { value: '#2', labelKey: 'studioInfo.reputation' },
-  { value: '17', labelKey: 'studioInfo.members' }
+  { value: '0', labelKey: 'studioInfo.clients' },
+  { value: '0', labelKey: 'studioInfo.reputation' },
+  { value: '0', labelKey: 'studioInfo.members' }
 ])
 </script>
 

@@ -1,29 +1,32 @@
 <template>
   <div class="header">
-    <el-input
+    <a-input
       class="search-bar"
       :placeholder="$t('header.search')"
-      prefix-icon="Search"
-      v-model="searchText"
-    />
+      v-model:value="searchText"
+    >
+      <template #prefix>
+        <SearchOutlined />
+      </template>
+    </a-input>
     <div class="header-right">
-      <el-dropdown @command="handleLanguageChange">
+      <a-dropdown>
         <div class="language-selector">
           <span class="flag">{{ currentLang === 'zh' ? '🇨🇳' : '🇬🇧' }}</span>
           <span>{{ currentLang === 'zh' ? '中文' : 'English' }}</span>
-          <el-icon class="el-icon--right"><ArrowDown /></el-icon>
+          <DownOutlined />
         </div>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item command="en">English</el-dropdown-item>
-            <el-dropdown-item command="zh">中文</el-dropdown-item>
-          </el-dropdown-menu>
+        <template #overlay>
+          <a-menu @click="handleLanguageChange">
+            <a-menu-item key="en">English</a-menu-item>
+            <a-menu-item key="zh">中文</a-menu-item>
+          </a-menu>
         </template>
-      </el-dropdown>
+      </a-dropdown>
       
-      <el-badge is-dot class="notification-badge">
-        <el-icon size="20"><Bell /></el-icon>
-      </el-badge>
+      <a-badge dot class="notification-badge">
+        <BellOutlined style="font-size: 20px" />
+      </a-badge>
     </div>
   </div>
 </template>
@@ -31,8 +34,8 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { Search, ArrowDown, Bell } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { SearchOutlined, DownOutlined, BellOutlined } from '@ant-design/icons-vue'
+import { message } from 'ant-design-vue'
 
 // 初始化i18n
 const { locale } = useI18n()
@@ -45,16 +48,13 @@ const currentLang = computed(() => locale.value)
  * 切换语言的处理函数
  * @param {string} lang - 语言代码 ('en'|'zh')
  */
-const handleLanguageChange = (lang) => {
+const handleLanguageChange = ({ key: lang }) => {
   // 设置i18n的locale
   locale.value = lang
   // 保存到本地存储，以便下次访问时保持语言设置
   localStorage.setItem('language', lang)
   // 显示切换成功的消息
-  ElMessage({
-    message: lang === 'zh' ? '已切换到中文' : 'Switched to English',
-    type: 'success'
-  })
+  message.success(lang === 'zh' ? '已切换到中文' : 'Switched to English')
 }
 </script>
 

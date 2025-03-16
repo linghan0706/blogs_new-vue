@@ -25,9 +25,9 @@ export default {
   studioInfo: {
     name: 'Tools Studio',
     description: 'Web development tools for creative people',
-    clients:'',
-    reputation: 'Reputation',
-    members: 'Members'
+    clients:'users',
+    reputation: '',
+    members: '',
   },
   teamMember: {
     title: 'Team Members',
