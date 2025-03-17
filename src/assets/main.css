@@ -8,7 +8,12 @@
 .el-menu-item .el-menu-tooltip__trigger{
   left: -11px;
 }
-
+/* 仪表盘响应式适配移动端 */
+@media (max-width: 768px) {
+  .dashboard-header[data-v-7f773d42] {
+      width: 363px;
+  }
+}
 /* 全局样式 */
 * {
   margin: 0;
