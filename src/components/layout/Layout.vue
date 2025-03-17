@@ -63,6 +63,8 @@ import RouterTransition from './RouterTransition.vue'
   padding: 16px;
   background-color: var(--bg-color);
   overflow-x: hidden;
+  position: relative;
+  min-height: 500px; /* 确保最小高度，防止内容变化导致容器高度变化 */
   transition: padding var(--transition-normal), background-color var(--transition-normal);
   border-radius: 8px;
 }

@@ -36,13 +36,17 @@ import { ref } from 'vue'
 import { Position } from '@element-plus/icons-vue'
 import { sendChatMessage } from '../components/until/axios.ts'
 
+// 导入图片资源
+import botAvatar from '../assets/avatar/bot.jpg'
+import userAvatar from '../assets/avatar/user.jpg'
+
 const messages = ref([])
 const inputMessage = ref('')
 const messageList = ref(null)
 const isLoading = ref(false)
 const options = ref({
-  botAvatarImg: './src/assets/avatar/bot.jpg',
-  userAvatarImg: './src/assets/avatar/user.jpg',
+  botAvatarImg: botAvatar,
+  userAvatarImg: userAvatar,
   inputPlaceholder: '请输入消息...'
 })
 

@@ -93,6 +93,11 @@ onMounted(() => {
   z-index: 100;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
+  /* 添加硬件加速，减少重排 */
+  transform: translateZ(0);
+  will-change: transform;
+  /* 确保宽度固定 */
+  box-sizing: content-box;
 }
 
 @media (max-width: 768px) {
@@ -182,16 +187,27 @@ onMounted(() => {
   align-items: center;
   justify-content: flex-start;
   padding: 0 var(--space-md);
-  transition: all var(--transition-fast);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
   margin-left: 0 !important;
   margin-right: 0 !important;
   width: 90% !important;
+  /* 添加硬件加速，减少重排 */
+  transform: translateZ(0);
+  will-change: transform, background-color;
+  /* 确保字体不会导致尺寸变化 */
+  font-weight: 500;
 }
 
 :deep(.ant-menu-item .anticon) {
   font-size: 20px;
   margin-right: var(--space-sm);
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+  /* 添加固定宽度和高度 */
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 :deep(.ant-menu-item:hover) {
@@ -208,6 +224,11 @@ onMounted(() => {
   background-color: var(--primary-light);
   color: var(--primary-color);
   font-weight: 500;
+  /* 添加宽度固定，防止字体粗细变化导致宽度变化 */
+  width: 90% !important;
+  /* 添加transform硬件加速，减少重排 */
+  transform: translateZ(0);
+  will-change: transform, background-color;
 }
 
 :deep(.ant-menu-inline-collapsed) {
