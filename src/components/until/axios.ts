@@ -1,8 +1,17 @@
 import axios from 'axios';
 
+// API接口地址配置
+const API_CONFIG = {
+  BASE_URL: 'https://chatapi-self-two.vercel.app/api',
+  ENDPOINTS: {
+    CHAT_COMPLETIONS: '/chat/completions',
+    MODELS: '/models'
+  }
+};
+
 // 配置axios实例
 const instance = axios.create({
-  baseURL: 'https://chatapi-self-two.vercel.app/api',  // 使用文档中提供的后端接口地址
+  baseURL: API_CONFIG.BASE_URL,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json'
@@ -61,7 +70,7 @@ export async function sendChatMessage(messages: Message[]) {
       temperature: 0.3
     };
     
-    const response = await instance.post('/chat/completions', data);
+    const response = await instance.post(API_CONFIG.ENDPOINTS.CHAT_COMPLETIONS, data);
     console.log('聊天响应:', response.data);
     return response.data;
   } catch (error: any) {
@@ -73,7 +82,7 @@ export async function sendChatMessage(messages: Message[]) {
 // 获取模型列表
 export async function getModelsList() {
   try {
-    const response = await instance.get('/models');
+    const response = await instance.get(API_CONFIG.ENDPOINTS.MODELS);
     console.log('模型列表:', response.data);
     return response.data;
   } catch (error: any) {

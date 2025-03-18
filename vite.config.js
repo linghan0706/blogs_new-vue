@@ -2,6 +2,11 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 
+// API接口地址配置
+const apiConfig = {
+  baseURL: 'https://chatapi-self-two.vercel.app'
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
@@ -14,7 +19,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://chatapi-self-two.vercel.app',
+        target: apiConfig.baseURL,
         changeOrigin: true,
         rewrite: (path) => path
       }
