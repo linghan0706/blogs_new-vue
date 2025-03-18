@@ -4,6 +4,14 @@
       <div class="chat-header">
         <el-avatar :size="48" :src="options.botAvatarImg" />
         <span class="chat-title">Chat </span>
+        <el-select v-model="selectedModel" placeholder="选择模型" size="small" class="model-select">
+          <el-option 
+            v-for="model in availableModels" 
+            :key="model.id" 
+            :label="model.id" 
+            :value="model.id" 
+          />
+        </el-select>
       </div>
       <div class="chat-messages" ref="messageList">
         <div v-for="(message, index) in messages" :key="index" :class="['message', message.agent === 'user' ? 'message-sent' : 'message-received']">
@@ -32,9 +40,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Position } from '@element-plus/icons-vue'
-import { sendChatMessage } from '../components/until/axios.ts'
+import { sendChatMessage, getModelsList } from '../components/until/axios.ts'
 
 // 导入图片资源
 import botAvatar from '../assets/avatar/bot.jpg'
@@ -44,10 +52,24 @@ const messages = ref([])
 const inputMessage = ref('')
 const messageList = ref(null)
 const isLoading = ref(false)
+const availableModels = ref([])
+const selectedModel = ref('yi-lightning')
 const options = ref({
   botAvatarImg: botAvatar,
   userAvatarImg: userAvatar,
   inputPlaceholder: '请输入消息...'
+})
+
+// 获取可用模型列表
+onMounted(async () => {
+  try {
+    const response = await getModelsList()
+    if (response && response.data) {
+      availableModels.value = response.data
+    }
+  } catch (error) {
+    console.error('获取模型列表失败:', error)
+  }
 })
 
 const handleMessageSend = async () => {
@@ -65,7 +87,19 @@ const handleMessageSend = async () => {
   
   try {
     isLoading.value = true
-    const response = await sendChatMessage([{ role: 'user', content: userMessage }])
+    
+    // 构建聊天历史记录
+    const chatHistory = messages.value.map(msg => ({
+      role: msg.agent === 'user' ? 'user' : 'assistant',
+      content: msg.text
+    }))
+    
+    // 确保最后一条消息是用户消息
+    if (chatHistory[chatHistory.length - 1].role !== 'user') {
+      chatHistory.push({ role: 'user', content: userMessage })
+    }
+    
+    const response = await sendChatMessage(chatHistory)
     
     messages.value.push({
       agent: 'bot',
@@ -136,6 +170,11 @@ const scrollToBottom = () => {
   background: linear-gradient(45deg, #2196f3, #64b5f6);
   -webkit-background-clip: text;
   color: transparent;
+}
+
+.model-select {
+  margin-left: auto;
+  width: 150px;
 }
 
 .chat-messages {
