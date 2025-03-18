@@ -190,6 +190,7 @@ const scrollToBottom = () => {
   display: flex;
   gap: 15px;
   max-width: min(80%, 600px);
+  align-items: flex-start;
 }
 
 @media screen and (max-width: 480px) {
@@ -199,8 +200,11 @@ const scrollToBottom = () => {
   }
 
   :deep(.el-avatar) {
-    width: 40px !important;
-    height: 40px !important;
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    flex-shrink: 0 !important;
     border: 3px solid #fce4ec !important;
   }
 }
@@ -208,6 +212,15 @@ const scrollToBottom = () => {
 :deep(.el-avatar) {
   border: 4px solid #e3f2fd;
   transition: transform 0.3s ease;
+  object-fit: cover !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
 }
 
 :deep(.el-avatar):hover {
